@@ -9,8 +9,14 @@ export default function Menu() {
               <ul className="nav flex-column">
                 <li className="nav-item">
                   <NavLink to={'/users'} className="nav-link active" aria-current="page">
-                    <span data-feather="home"></span>
+                    <span data-feather="userss"></span>
                     Users
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to={'/products'} className="nav-link active" aria-current="page">
+                    <span data-feather="product"></span>
+                    Products
                   </NavLink>
                 </li>
               </ul>

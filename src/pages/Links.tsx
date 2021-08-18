@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow } from '@material-ui/core'
 import Layout from '../components/Layout'
-import {Link} from "../models/Link"
+import {Link} from "../models/link"
 import axios from 'axios'
 const Links = (props: any) => {
     const [links, setLinks] = useState<Link[]>([])
@@ -33,7 +33,7 @@ const Links = (props: any) => {
                                 <TableRow key={link.id}>
                                     <TableCell>{link.code}</TableCell>
                                     <TableCell>{link.orders?.length}</TableCell>
-                                    <TableCell>{link.orders?.reduce((s,o) => s + o.total,0)}</TableCell>
+                                    <TableCell>{link.orders?.reduce((s,o) => s + o.total, 0)}</TableCell>
                                 </TableRow>
                             )
                         })}
