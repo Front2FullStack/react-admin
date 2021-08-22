@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import { Product } from '../../models/product'
 import Layout from '../../components/Layout'
 import { Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow , Button} from '@material-ui/core'
+import {ToggleButtonGroup} from '@material-ui/lab' 
 
 const Products= () => {
     const [products, setProducts] = useState<Product[]>([])
@@ -53,11 +54,18 @@ const Products= () => {
                                     <TableCell>{product.description}</TableCell>
                                     <TableCell>{product.price}</TableCell>
                                     <TableCell>
-                                        <Button variant="contained"
-                                        onClick={() => delAction(product.id)}
-                                            color="secondary">
-                                            Delete
-                                        </Button>
+                                        <ToggleButtonGroup>
+                                            <Button variant="contained"
+                                                href={`/products/${product.id}/edit`}
+                                                color="primary">
+                                                Edit
+                                            </Button>
+                                            <Button variant="contained"
+                                            onClick={() => delAction(product.id)}
+                                                color="secondary">
+                                                Delete
+                                            </Button>
+                                        </ToggleButtonGroup>
                                     </TableCell>
                                 </TableRow>
                             )
