@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, useEffect, useState } from 'react';
 import Nav from './Nav';
 import Menu from './Menu';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { User } from "../models/user"
+import { connect } from 'react-redux';
+import { setUser } from '../redux/actions/setUserAction';
+
 const Layout = (props: any) => {
     const [redirect, setRedirect] = useState(false)
-    const [user, setUser] = useState<User | null>(null)
     useEffect(() => {
         // async can be handled in useEffect like this
        (async () => {
-
-
         try {
             const {data} = await axios.get('user'); 
-            setUser(data)
+            props.setUser(data)
         } catch(e) {
             setRedirect(true)
         }
@@ -27,7 +27,7 @@ const Layout = (props: any) => {
     }
     return (
         <div>
-             <Nav user={user}/>
+             <Nav user={null}/>
             <div className="container-fluid">
                 <div className="row">
                 <Menu/>
@@ -42,4 +42,16 @@ const Layout = (props: any) => {
     )
 }
 
-export default Layout
+// getting events for other components and will be handled with it
+const mapStateToProps = (state: {user: User}) => ({
+    user: state.user
+})
+
+// to fire event to dispatch for other components
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+    setUser: (user: User) => dispatch(setUser(user))  
+})
+
+
+// connecting module with redux store
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)

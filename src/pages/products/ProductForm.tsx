@@ -24,7 +24,7 @@ const ProductForm = (props: any) => {
                 }
             )()
         }
-    },[])
+    },[props.match.params])
 
     const submit = async (e : SyntheticEvent) =>{
         e.preventDefault();
